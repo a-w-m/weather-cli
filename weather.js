@@ -2,10 +2,20 @@ const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 dotenv.config();
 
-const getUserLocationRequest = () => process.argv.slice(2).join(" ");
+const getUserArgs = () => process.argv.slice(2);
 
-const getLattitudeLongitude = async location => {
-  const key = process.env.mapBox_API_Token;
+const getUserLocationRequest = () => {
+  return getUserArgs()
+    .filter(arg => arg[0] !== "-")
+    .join(" ");
+};
+const getUserTemperatureUnitPreference = () => {
+  return getUserArgs().filter(arg => arg[0] === "-")[0] || "";
+};
+
+const getLattitudeLongitude = async () => {
+  const key = process.env.MAPBOX_API_KEY;
+  const location = getUserLocationRequest();
   const request = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(
     location
   )}.json?access_token=${key}`;
@@ -20,14 +30,14 @@ const getLattitudeLongitude = async location => {
 };
 
 const getWeather = async coordinates => {
-  const key = process.env.darkSky_API_Token;
+  const key = process.env.DARKSKY_API_KEY;
   const { lattitude, longitude, placeName } = coordinates;
   const request = `https://api.darksky.net/forecast/${key}/${lattitude},${longitude}`;
 
   const response = await fetch(request).then(result => result.json());
 
   return {
-    temperature: response.currently.apparentTemperature,
+    temperature: response.currently.temperature,
     currentConditions: response.currently.summary,
     futureConditions: response.daily.summary,
     placeName: placeName
@@ -42,18 +52,30 @@ const getWeatherSummary = weatherSummary => {
     placeName
   } = weatherSummary;
 
-  const currentTempSummary = `Current temperature in ${placeName} is ${temperature}`;
-  const currentConditionsSummary = `Conditions are currently: ${currentConditions}`;
-  const futureConditionsSummary = `What you should expect: ${futureConditions}`;
+  const unitTemperature = getUserTemperatureUnitPreference();
 
-  return `${currentTempSummary}
-${currentConditionsSummary}
-${futureConditionsSummary}
+  let currentTemp;
+  
+  if (unitTemperature.toLowerCase() == "-f") {
+    currentTemp = ` ${temperature}°F`;
+  } else if (unitTemperature.toLowerCase() == "-c" ) {
+    currentTemp = `${convertToCelsius(temperature)}°C`;
+  } else {
+    currentTemp = `${temperature}°F / ${convertToCelsius(temperature)}°C`;
+  }
+
+  return `Current temperature in ${placeName} is ${currentTemp}
+Conditions are currently: ${currentConditions}
+What you should expect: ${futureConditions}
      `;
 };
 
+const convertToCelsius = tempFarenheit => {
+  return Math.round((tempFarenheit - 32) * (5 / 9) * 100) / 100;
+};
+
 (async () => {
-  let coordinates = await getLattitudeLongitude(getUserLocationRequest());
+  let coordinates = await getLattitudeLongitude();
   let weather = await getWeather(coordinates);
   let summary = getWeatherSummary(weather);
   console.log(summary);
