@@ -8,6 +8,8 @@ A JavaScript application that returns a summary of the weather for a given regio
 - Clone or download the repo at (https://github.com/a-w-m/weather-cli.git)
 - Traverse to the "weather-cli" folder on the command line
 - Install the dependencies by entering `$ npm install` in the command line
+    - dotenv : a module that loads environment variables from a .env file into process.env
+    - node-fetch: a module that brings window.fetch to Node.js
 - Sign up for API keys at [Dark Sky](https://darksky.net/dev) and [mapbox](https://mapbox.com)
 - Assign API keys to environment variables in "sample.env" file.
 
@@ -56,3 +58,9 @@ What you should expect: Light rain next Wednesday.
 ## License 
 
 MIT
+
+## CLI Images
+
+![example 1](/images/weather-cli-sample.png)
+
+![example 2](/images/weather-cli-sample-2.png)
