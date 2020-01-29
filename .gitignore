@@ -1,4 +1,5 @@
 .env
 .vscode
+tests.js
 
 \node_modules
