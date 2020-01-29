@@ -61,6 +61,6 @@ MIT
 
 ## CLI Images
 
-![example 1](/images/weather-cli-sample.png)
+![example 1](https://github.com/a-w-m/weather-cli/blob/master/images/weather-cli-sample.PNG?raw=true)
 
-![example 2](/images/weather-cli-sample-2.png)
+![example 2](https://github.com/a-w-m/weather-cli/blob/master/images/weather-cli-sample-2.PNG?raw=true)
