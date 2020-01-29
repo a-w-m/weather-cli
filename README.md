@@ -11,7 +11,8 @@ A JavaScript application that returns a summary of the weather for a given regio
     - dotenv : a module that loads environment variables from a .env file into process.env
     - node-fetch: a module that brings window.fetch to Node.js
 - Sign up for API keys at [Dark Sky](https://darksky.net/dev) and [mapbox](https://mapbox.com)
-- Assign API keys to environment variables in "sample.env" file.
+- In your code editor, rename "sample.env" to ".env" so that dotenv module can locate it. 
+- Assign API keys to environment variables in ".env" file
 
 ## Usage
 
