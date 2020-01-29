@@ -1,17 +1,17 @@
 # Node.js Weather CLI
 
-A javascript application that returns a summary of the weather for a given region.
+A JavaScript application that returns a summary of the weather for a given region.
 
-# Installation
+## Installation
 
 - Install the latest version of Node.js
-- Clone or download the repo at ...
-- Traverse to the "weather-CLI" folder on the command line
+- Clone or download the repo at (https://github.com/a-w-m/weather-cli.git)
+- Traverse to the "weather-cli" folder on the command line
 - Install the dependencies by entering `$ npm install` in the command line
-- Sign up for API keys at (Dark Sky)[https://darksky.net/dev] and (mapbox)[https://mapbox.com]
-- Add API keys to environment variables in "sample.env" file.
+- Sign up for API keys at [Dark Sky](https://darksky.net/dev) and [mapbox](https://mapbox.com)
+- Assign API keys to environment variables in "sample.env" file.
 
-# Usage
+## Usage
 
 From the "weather-cli" folder on the command line enter :
 
@@ -19,24 +19,40 @@ From the "weather-cli" folder on the command line enter :
 
 Example:
 
-`node weather miami`
+`node weather bucharest`
 
-Current temperature in Miami, Florida, United States is 71.39°F / 21.88°C
-Conditions are currently: Partly Cloudy
-What you should expect: Light rain tomorrow through Saturday.
+```
+Current temperature in București, Bucureşti, Romania is 37.58°F / 3.1°C.
+Conditions are currently: Overcast
+What you should expect: Light rain next Wednesday.
+```
 
-## Optional Arguments (`-f`, `-farenheit`, `-c`, `-celsius)
+## Optional Arguments 
 
 - Enter optional arguments after the location to limit temperature to either farenheit or celsius
     - Fareneheit:
         `-f` or`-farenheit`
     - Celsius: 
-        `-c` or `celsius`
+        `-c` or `-celsius`
 
-Example:
+Examples:
 
-`node weather miami -c`
+`node weather bucharest -c`
 
-Current temperature in Miami, Florida, United States is 21.87°C
-Conditions are currently: Partly Cloudy
-What you should expect: Light rain tomorrow through Saturday.
+```
+Current temperature in București, Bucureşti, Romania is 3.11°C.
+Conditions are currently: Overcast
+What you should expect: Light rain next Wednesday.
+```
+
+`node weather bucharest -f`
+
+```
+Current temperature in București, Bucureşti, Romania is  37.6°F.
+Conditions are currently: Overcast
+What you should expect: Light rain next Wednesday.
+```
+
+## License 
+
+MIT
